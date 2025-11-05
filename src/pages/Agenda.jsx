@@ -15,31 +15,34 @@ export const Agenda = () => {
         type: "get_contacts",
         payload: data.contacts
       })
-    } catch (error){
+    } catch (error) {
       console.log("No se trajeron los contactos de la agenda", error);
-      
-    }
-   }
 
-   useEffect(()=>{
+    }
+  }
+
+  useEffect(() => {
     obtenerContactos()
-   }, [])
+  }, [])
 
   return (
     <div className="text-center mt-5">
       <h1>Mi Agenda de Contactos</h1>
       {contactos.length === 0 ? (
         <p>Aun no hay contactos por mostrar</p>
-      ):(
+      ) : (
         contactos.map((item) => (
           <ContactCard
-          key={item.id}
-          information={item}/>
+            key={item.id}
+            information={item} />
         ))
       )
       }
+      <Link to="/">
+        <button className="btn btn-outline-secondary">or get Back to Contacts</button>
+      </Link>
     </div>
-    
+
 
   );
 }; 

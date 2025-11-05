@@ -1,0 +1,22 @@
+.principal{
+    opacity: 50%;
+    position: relative;
+	display: inline-block;
+    width: 500px;
+    height: 500px;
+    
+}
+.btn-overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0.85;
+	transition: opacity 0.1s, transform 0.3s;
+}
+h1{
+    font-size: 40px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(161, 34, 113);
+
+}
