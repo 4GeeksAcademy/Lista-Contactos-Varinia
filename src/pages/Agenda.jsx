@@ -1,6 +1,7 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { ContactCard } from "../component/ContactCard";
 
 export const Agenda = () => {
 
@@ -12,7 +13,7 @@ export const Agenda = () => {
       const resp = await fetch(`https://playground.4geeks.com/contact/agendas/varinia/contacts`)
       const data = await resp.json();
       dispatch({
-        type: "get_contacts",
+        type: "get_contact",
         payload: data.contacts
       })
     } catch (error) {
@@ -21,9 +22,27 @@ export const Agenda = () => {
     }
   }
 
-  useEffect(() => {
+  const eliminarContacto = async (id) => {
+    try {
+    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/varinia/contacts/${id}`, {
+      method: "DELETE"
+    });     
+        if (resp.ok) {
+          dispatch({
+        type: "delete_contact",
+        payload: id});
+        console.log("Se elimino el contacto");
+          obtenerContactos();
+        } else {
+          console.log("No se elimino el contacto");
+        }
+      } catch(error) 
+      {console.log(error);
+    }
+  }
+ useEffect (() =>{
     obtenerContactos()
-  }, [])
+  }, []);
 
   return (
     <div className="text-center mt-5">
@@ -34,7 +53,8 @@ export const Agenda = () => {
         contactos.map((item) => (
           <ContactCard
             key={item.id}
-            information={item} />
+            information={item} 
+            eliminar={eliminarContacto}/>
         ))
       )
       }
@@ -42,7 +62,5 @@ export const Agenda = () => {
         <button className="btn btn-outline-secondary">or get Back to Contacts</button>
       </Link>
     </div>
-
-
   );
 }; 

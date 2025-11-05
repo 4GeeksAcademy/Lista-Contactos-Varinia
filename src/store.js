@@ -12,8 +12,8 @@ export const initialStore = () => {
         title: "Do my homework",
         background: null,
       }
-    ]
-    //contacts : []
+    ],
+    contacts: []
   }
 }
 
@@ -27,25 +27,38 @@ export default function storeReducer(store, action = {}) {
         ...store,
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
       };
-    //////////
-    // case 'add_contact':
+    ////////// nuevo contacto
+    case 'add_contact':
 
-    //   return {
-    //     ...store, contacts [...store.contacts, action.payload]
-    //   };
+      return {
+        ...store, contacts: [...store.contacts, action.payload]
+      };
 
-
+///// traer contactos
     case 'get_contact':
 
       return {
-        ...store.contacts = action.payload
+        ...store, contacts: action.payload
+
+      };
+      /// editar contactos
+          case 'edit_contact':
+
+      return {
+        ...store, contacts: store.contacts.map(c => c.id === action.payload.id ? action.payload :c)
 
       };
 
+      ///// eliminar contacto
+      case 'delete_contact':
 
+      return {
+        ...store, contacts: store.contacts.filter(c => c.id !== action.payload)
 
+      };
 
     default:
+      console.error("Acción desconocida:", action);
       throw Error('Unknown action.');
   }
 }

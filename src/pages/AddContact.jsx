@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+/// nuevo contacto
 export const AddContact = () => {
     const { store, dispatch } = useGlobalReducer()
 
@@ -15,14 +15,14 @@ export const AddContact = () => {
     const formChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
-
+/// guardar formulario
     const forSubmit = (e) => {
         e.preventDefault()
         if (!data.name || !data.email || !data.phone || !data.address) {
             alert("Complete all fields")
             return;
         }
-        fetch("https://playground.4geeks.com/contact/agendas/varinia/contacts", {
+        fetch(`https://playground.4geeks.com/contact/agendas/varinia/contacts`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

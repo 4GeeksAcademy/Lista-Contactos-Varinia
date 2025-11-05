@@ -16,14 +16,18 @@ export const contactCard = (props) => {
         <div className="col-md-8">
           <div className="card-body">
             <h5 className="card-title">{props.informacion.name}
-              <Link to={'/editcontact/' + props.informacion.id}>
-                <button className="btn btn-outline-secondary">edit</button>
-              </Link>
+              <div className="button-card">
+                <Link to={'/editcontact/' + props.informacion.id}>
+                  <button className="btn btn-outline-secondary">edit</button>
+                </Link>
+                <button className="btn btn-outline-secondary" onClick={() => props.eliminar(props.informacion.id)}>delete</button>
+              </div>
             </h5>
-            <p className="card-text">{props.informacion.address}</p>
-            <p className="card-text">{props.informacion.phone}</p>
-            <p className="card-text">{props.informacion.email}</p>
-
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{props.informacion.address}</li>
+              <li class="list-group-item">{props.informacion.phone}</li>
+              <li class="list-group-item">{props.informacion.email}</li>
+            </ul>
           </div>
         </div>
       </div>

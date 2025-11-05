@@ -1,5 +1,4 @@
 // Import necessary components and functions from react-router-dom.
-
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -9,7 +8,7 @@ import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
-import { EditContact } from "./pages/EditContact.jsx";
+import { EditContact } from "./pages/EditContact";
 import { AddContact } from "./pages/AddContact";
 import { Agenda } from "./pages/Agenda";
 
