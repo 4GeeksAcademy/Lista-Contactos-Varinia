@@ -5,12 +5,31 @@ import { ContactCard } from "../component/ContactCard";
 
 export const Agenda = () => {
 
-  const { store, dispatch } = useGlobalReducer()
-  const contactos = store.contacts || []
+  const { store, dispatch } = useGlobalReducer();
+  const contactos = store.contacts || [];
+  const slug = "varinia";
+
+  const crearUsuario = async () => {
+    try {
+      const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}`);
+      if (resp.status === 404) {
+        console.log("No existe la agenda");
+
+        await fetch(`https://playground.4geeks.com/contact/agendas/${slug}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({})
+        });
+        console.log("Se creo la agenda");
+      }
+    } catch (error) {
+      console.log("Error al traer o crear agenda");
+    }
+  };
 
   const obtenerContactos = async () => {
     try {
-      const resp = await fetch(`https://playground.4geeks.com/contact/agendas/varinia/contacts`)
+      const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts`)
       const data = await resp.json();
       dispatch({
         type: "get_contact",
@@ -24,23 +43,24 @@ export const Agenda = () => {
 
   const eliminarContacto = async (id) => {
     try {
-    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/varinia/contacts/${id}`, {
-      method: "DELETE"
-    });     
-        if (resp.ok) {
-          dispatch({
-        type: "delete_contact",
-        payload: id});
+      const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`, {
+        method: "DELETE"
+      });
+      if (resp.ok) {
+        dispatch({
+          type: "delete_contact",
+          payload: id
+        });
         console.log("Se elimino el contacto");
-          obtenerContactos();
-        } else {
-          console.log("No se elimino el contacto");
-        }
-      } catch(error) 
-      {console.log(error);
+        obtenerContactos();
+      } else {
+        console.log("No se elimino el contacto");
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
- useEffect (() =>{
+  useEffect(() => {
     obtenerContactos()
   }, []);
 
@@ -53,8 +73,8 @@ export const Agenda = () => {
         contactos.map((item) => (
           <ContactCard
             key={item.id}
-            information={item} 
-            eliminar={eliminarContacto}/>
+            information={item}
+            eliminar={eliminarContacto} />
         ))
       )
       }

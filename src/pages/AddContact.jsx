@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+
 /// nuevo contacto
 export const AddContact = () => {
+
     const { store, dispatch } = useGlobalReducer()
 
     const navigate = useNavigate()

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import useGlobalReducer from "../hooks/useGlobalReducer";
-import { useNavigate, useParams } from 'react-router-dom';
+import {Link, useNavigate, useParams } from 'react-router-dom';
 
 export const EditContact = () => {
   const { store, dispatch } = useGlobalReducer()
   const navigate = useNavigate()
   const { contact_id } = useParams()
-  const editarContacto = store.contacts.find
+  const editarContacto = store.contacts.find(contact => contact.id == contact_id);
 
 
 
@@ -43,7 +43,7 @@ export const EditContact = () => {
             .then((updatedContact) => {
                 dispatch({
                     type: "edit_contact",
-        ///            payload: updatedContact
+                    payload: updatedContact
                 })
                 navigate("/")
             })
@@ -52,7 +52,7 @@ export const EditContact = () => {
 
     return (
             <div className='container'>
-                <h2>Add a new Contact</h2>
+                <h2>Edit Contact</h2>
                 <form className="row g-3" onSubmit={forSubmit}>
                     <div className="col-md-12">
                         <label htmlFor="inputName" className="form-label">Full Name</label>
