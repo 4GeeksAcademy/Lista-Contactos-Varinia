@@ -20,3 +20,34 @@ h1{
     color: rgb(161, 34, 113);
 
 }
+.contacto{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    margin-left: 2px;
+    margin-right: 3px;
+    display: flex;
+    align-items: center;
+    color: rgb(161, 34, 113);
+   
+}
+
+h5{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.button-card{
+    background-color: none;
+    
+}
+.input-group-text {
+  background-color: transparent !important;
+  border: none !important;
+}
+span{
+    color: blueviolet !important;
+}
+
+

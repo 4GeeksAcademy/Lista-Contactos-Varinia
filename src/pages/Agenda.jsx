@@ -1,7 +1,7 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { ContactCard } from "../component/ContactCard";
+import { ContactCard } from "../components/ContactCard.jsx";
 
 export const Agenda = () => {
 
@@ -18,7 +18,6 @@ export const Agenda = () => {
         await fetch(`https://playground.4geeks.com/contact/agendas/${slug}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({})
         });
         console.log("Se creo la agenda");
       }

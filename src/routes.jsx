@@ -10,7 +10,7 @@ import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { EditContact } from "./pages/EditContact";
 import { AddContact } from "./pages/AddContact";
-import { Agenda } from "./pages/Agenda";
+import { Agenda } from "./pages/Agenda.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
