@@ -44,7 +44,7 @@ export const AddContact = () => {
                     type: "add_contact",
                     payload: NewContact
                 })
-                navigate("/")
+                navigate("/Agenda")
             })
             .catch((error) => console.error("No se creo el contacto", error))
     }

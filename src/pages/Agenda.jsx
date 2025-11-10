@@ -18,6 +18,7 @@ export const Agenda = () => {
         await fetch(`https://playground.4geeks.com/contact/agendas/${slug}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
         });
         console.log("Se creo la agenda");
       }
@@ -60,7 +61,10 @@ export const Agenda = () => {
     }
   }
   useEffect(() => {
-    obtenerContactos()
+    (async () =>{
+      await crearUsuario ();
+      await obtenerContactos();
+    })();
   }, []);
 
   return (
