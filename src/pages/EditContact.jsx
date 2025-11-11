@@ -7,32 +7,24 @@ export const EditContact = () => {
     const navigate = useNavigate();
     const { contact_id } = useParams();
 
-    const editarContacto = store.contacts.find(contact => contact.id == contact_id);
-
-
     let [data, setData] = useState({
         name: "", email: "", phone: "", address: "",
     })
 
     useEffect(() => {
+
+        const editarContacto = store.contacts.find(contact => contact.id == contact_id);
         if (editarContacto) {
-            setData(editarContacto);
-        } else {
-            fetch(`https://playground.4geeks.com/contact/agendas/varinia/contacts/${contact_id}`)
-                .then((resp) => {
-                    if (!resp.ok) {
-                        throw new Error("No se encontro el contacto");
-                    }
-                    return resp.json();
-                })
-                .then((dataApi) => {
-                    setData(dataApi);
-                })
-                .catch((error) => {
-                    console.log("No se obtuvo el contacto a editar", error)
-                });
+            setData({
+                name: editarContacto.name, email: editarContacto.email, phone: editarContacto.phone, address: editarContacto.address
+
+            })
+
         }
-    }, [editarContacto, contact_id]);
+        else {
+            console.log("Contacto no encontrado");
+        }
+    }, [contact_id]);
 
     const formChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
@@ -43,7 +35,6 @@ export const EditContact = () => {
             alert("Complete all fields")
             return;
         }
-
 
         fetch(`https://playground.4geeks.com/contact/agendas/varinia/contacts/${contact_id}`, {
             method: "PUT",
